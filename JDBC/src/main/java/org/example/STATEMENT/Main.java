@@ -11,7 +11,7 @@ public class Main {
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String ZONA = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
         Dotenv dotenv = Dotenv.load();
         String USER = dotenv.get("DB_USER");
         String PASSWORD = dotenv.get("DB_PASSWORD");
@@ -47,7 +47,7 @@ public class Main {
         }
     }
 
-    public void buscarClientes(Connection conexion) throws SQLException,ClassNotFoundException {
+    public static void buscarClientes(Connection conexion) throws SQLException,ClassNotFoundException {
         Statement stmt = null;
         ResultSet rs = null;
         String sqlQuery = "SELECT nombre_contacto, apellido_contacto, telefono FROM cliente";
