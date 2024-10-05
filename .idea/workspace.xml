@@ -5,7 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86f8ecf8-23f7-41a2-bcb8-56935d682819" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/.idea/sqldialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/lib/mysql-connector-j-8.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/src/main/java/org/example/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/src/main/java/persistencia/DAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/src/main/java/persistencia/MiDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/src/main/resources/CREACION DE TABLAS.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/src/main/resources/datos_vivero.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/target/classes/CREACION DE TABLAS.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/target/classes/datos_vivero.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/target/classes/org/example/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/target/classes/persistencia/DAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JDBC_PRIMER_PASO/target/classes/persistencia/MiDao.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,9 +35,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2mxUCoVFRDHST4N8bCt82wpLnJC" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -26,7 +46,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "nodejs_package_manager_path": "npm",
@@ -51,6 +71,7 @@
       <option name="presentableId" value="Default" />
       <updated>1728017597508</updated>
       <workItem from="1728017598759" duration="66000" />
+      <workItem from="1728022362472" duration="78000" />
     </task>
     <servers />
   </component>
