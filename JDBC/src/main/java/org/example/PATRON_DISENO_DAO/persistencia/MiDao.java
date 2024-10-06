@@ -1,4 +1,4 @@
-package persistencia;
+package org.example.PATRON_DISENO_DAO.persistencia;
 
 import java.sql.SQLException;
 
@@ -21,7 +21,7 @@ public class MiDao extends DAO{
         finally {
             try {
                 desconectarBaseDeDatos();
-            } catch (SQLException | ClassNotFoundException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

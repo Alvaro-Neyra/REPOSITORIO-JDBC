@@ -47,7 +47,7 @@ public class Main {
         }
     }
 
-    public static void buscarClientes(Connection conexion) throws SQLException,ClassNotFoundException {
+    public static void buscarClientes(Connection conexion) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         ResultSet rs = null;
         String sqlQuery = "SELECT nombre_contacto, apellido_contacto, telefono FROM cliente";

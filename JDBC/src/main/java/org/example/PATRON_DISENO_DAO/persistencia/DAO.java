@@ -1,4 +1,4 @@
-package persistencia;
+package org.example.PATRON_DISENO_DAO.persistencia;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,19 +20,19 @@ public abstract class DAO {
     private final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private final String ZONA = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
-    public void connectarBaseDeDatos() throws SQLException, ClassNotFoundException {
+    protected void connectarBaseDeDatos() throws SQLException, ClassNotFoundException {
         try {
             Class.forName(DRIVER);
             String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE + ZONA;
             conexion = DriverManager.getConnection(url, USER, PASSWORD);
             System.out.println("Conexión exitosa a la base de datos.");
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
             throw e;
         }
     }
 
-    public void desconectarBaseDeDatos() throws SQLException, ClassNotFoundException {
+    protected void desconectarBaseDeDatos() throws SQLException {
         try {
             if (resultSet != null) {
                 resultSet.close();
@@ -43,9 +43,36 @@ public abstract class DAO {
             if (conexion != null) {
                 conexion.close();
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
             throw e;
+        }
+    }
+
+    protected void insertarModificarEliminar(String sql) throws SQLException, ClassNotFoundException {
+        try {
+            connectarBaseDeDatos();
+            statement = conexion.createStatement();
+            statement.executeUpdate(sql);
+        } catch (SQLException | ClassNotFoundException e) {
+            // En el caso de que haigan muchas inserciones y durante el transcurso hay un error pues se eliminan las anteriores inserciones
+            // conexion.rollback();
+            throw e;
+        } finally {
+            desconectarBaseDeDatos();
+        }
+    }
+
+    protected void consultarBase(String sql) throws Exception {
+        try {
+            connectarBaseDeDatos();
+            statement = conexion.createStatement();
+            resultSet = statement.executeQuery(sql);
+        }
+        catch (Exception e) {
+            throw e;
+        } finally {
+            desconectarBaseDeDatos();
         }
     }
 }
