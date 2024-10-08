@@ -137,7 +137,7 @@ public class Main {
                 System.out.println(pedido.toString());
             }
             System.out.println("Gestionando oficinas: ");
-            List<Oficina> oficinasBuscadas = ofDao.buscarOficinaPorCodigo(6);
+            List<Oficina> oficinasBuscadas = ofDao.buscarOficinaPorCodigo("MAD-ES");
             for (Oficina oficina : oficinasBuscadas) {
                 System.out.println(oficina.toString());
             }

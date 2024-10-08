@@ -36,7 +36,7 @@ public class PedidosDAO extends DAO {
         List<Pedido> pedidosPorEstado = new ArrayList<>();
         try {
             Pedido pedido = new Pedido();
-            String sql = "SELECT * FROM pedido WHERE estado = " + estado;
+            String sql = "SELECT * FROM pedido WHERE estado = '" + estado + "'";
             consultarBase(sql);
             while (resultSet.next()) {
                 pedido.setIdPedido(resultSet.getInt("id_pedido"));

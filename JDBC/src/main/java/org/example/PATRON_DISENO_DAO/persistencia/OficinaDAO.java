@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OficinaDAO extends DAO{
-    public List<Oficina> buscarOficinaPorCodigo(int codigo) throws Exception {
+    public List<Oficina> buscarOficinaPorCodigo(String codigoOficina) throws Exception {
         List<Oficina> oficinas = new ArrayList<Oficina>();
         try {
             Oficina oficina = new Oficina();
-            String sql = "SELECT * FROM oficina WHERE codigo = " + codigo;
+            String sql = "SELECT * FROM oficina WHERE codigo_oficina = '" + codigoOficina + "'";
             consultarBase(sql);
             while (resultSet.next()) {
                 oficina.setIdOficina(resultSet.getInt("id_oficina"));
