@@ -25,7 +25,6 @@ public abstract class DAO {
             Class.forName(DRIVER);
             String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE + ZONA;
             conexion = DriverManager.getConnection(url, USER, PASSWORD);
-            System.out.println("Conexión exitosa a la base de datos.");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
             throw e;
@@ -71,8 +70,6 @@ public abstract class DAO {
         }
         catch (Exception e) {
             throw e;
-        } finally {
-            desconectarBaseDeDatos();
         }
     }
 }
