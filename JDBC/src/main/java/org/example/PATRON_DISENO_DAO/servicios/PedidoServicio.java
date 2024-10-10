@@ -12,9 +12,27 @@ public class PedidoServicio {
     }
     public Pedido crearNuevoPedido(int codigoPedido, Date fechaPedido, Date fechaEsperada, Date fechaEntrega, String estado, String comentarios, int idCliente) throws Exception{
         verificarDatosPedido(codigoPedido, fechaPedido, fechaEsperada, fechaEntrega, estado, comentarios, idCliente);
+        if (verificarPedidoRepetido(codigoPedido)) {
+            System.out.println("El pedido ya existe!");
+            return buscarPedidoPorCodigo(codigoPedido).getFirst();
+        }
         Pedido pedidoAAgregar = new Pedido(codigoPedido, fechaPedido, fechaEsperada, fechaEntrega, estado, comentarios, idCliente);
         pedidosDAO.guardarPedido(pedidoAAgregar);
         return pedidoAAgregar;
+    }
+
+    public List<Pedido> buscarPedidoPorCodigo(int codigoPedido) throws Exception{
+        verificarCodigo(codigoPedido);
+        List<Pedido> pedidosEncontrados = null;
+        try {
+            pedidosEncontrados = pedidosDAO.buscarPedidoPorCodigo(codigoPedido);
+            if (pedidosEncontrados.isEmpty()) {
+                System.out.println("Pedido no encontrado");
+            }
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+        return pedidosEncontrados;
     }
 
     public List<Pedido> listarPedidosPorClienteID(int idCliente) throws Exception {
@@ -48,6 +66,11 @@ public class PedidoServicio {
         if (cadena.isEmpty()) {
             throw new Exception("Atributo no valido");
         }
+    }
+
+    private boolean verificarPedidoRepetido(int codigoPedido) throws Exception{
+        List<Pedido> pedidos = buscarPedidoPorCodigo(codigoPedido);
+        return !pedidos.isEmpty(); // Si es true existe oficinas con ese codigo especificado
     }
 
     private void verificarCodigo(int codigoPedido) throws Exception {

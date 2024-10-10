@@ -19,6 +19,30 @@ public class PedidosDAO extends DAO {
             throw new Exception(e.getMessage());
         }
     }
+    public List<Pedido> buscarPedidoPorCodigo(int codigoPedido) throws Exception {
+        List<Pedido> pedidosEncontrados = new ArrayList<>();
+        try {
+            Pedido pedido = new Pedido();
+            String sql = "SELECT * FROM pedido WHERE codigo_pedido = '" + codigoPedido + "'";
+            consultarBase(sql);
+            while (resultSet.next()) {
+                pedido.setIdPedido(resultSet.getInt("id_pedido"));
+                pedido.setCodigoPedido(resultSet.getInt("codigo_pedido"));
+                pedido.setFechaPedido(resultSet.getDate("fecha_pedido"));
+                pedido.setFechaEsperada(resultSet.getDate("fecha_esperada"));
+                pedido.setFechaEntrega(resultSet.getDate("fecha_entrega"));
+                pedido.setEstado(resultSet.getString("estado"));
+                pedido.setComentarios(resultSet.getString("comentarios"));
+                pedido.setIdCliente(resultSet.getInt("id_cliente"));
+                pedidosEncontrados.add(pedido);
+            }
+            desconectarBaseDeDatos();
+        } catch (Exception e) {
+            desconectarBaseDeDatos();
+            throw new Exception("Error a buscar el pedido por codigo: " + e.getMessage());
+        }
+        return pedidosEncontrados;
+    }
     public List<Pedido> listarPedidosPorCliente(int clienteID) throws Exception{
         List<Pedido> pedidos = new ArrayList<Pedido>();
         try {

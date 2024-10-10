@@ -13,7 +13,7 @@ public class ProductoDAO extends DAO{
 
         try {
             String sql = "INSERT INTO producto (codigo_producto, nombre, id_gama, dimensiones, proveedor, descripcion, cantidad_en_stock, precio_venta, precio_proveedor) " +
-                    "VALUES (" + producto.getCodigoProducto() + ", '" + producto.getNombreProducto() + "', " + producto.getIdGamaProducto() + ", '" + producto.getDimensiones() + "', '" +
+                    "VALUES ('" + producto.getCodigoProducto() + "', '" + producto.getNombreProducto() + "', " + producto.getIdGamaProducto() + ", '" + producto.getDimensiones() + "', '" +
                     producto.getProveedor() + "', '" + producto.getDescripcion() + "', " + producto.getStock() + ", " + producto.getPrecioVenta() + ", " + producto.getPrecioProveedor() + ")";
 
             insertarModificarEliminar(sql);
@@ -118,7 +118,7 @@ public class ProductoDAO extends DAO{
             String sql = "UPDATE producto SET " +
                     "codigo_producto = '" + producto.getCodigoProducto() + "', " +
                     "nombre = '" + producto.getNombreProducto() + "', " +
-                    "id_gama_producto = " + producto.getIdGamaProducto() + ", " +
+                    "id_gama = " + producto.getIdGamaProducto() + ", " +
                     "dimensiones = '" + producto.getDimensiones() + "', " +
                     "proveedor = '" + producto.getProveedor() + "', " +
                     "descripcion = '" + producto.getDescripcion() + "', " +

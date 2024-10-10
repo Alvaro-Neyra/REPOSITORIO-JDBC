@@ -14,7 +14,7 @@ public class OficinaServicio {
         verificarOficina(oficina);
         if (verificarOficinaRepetida(oficina.getCodigoOficina())) {
             System.out.println("El oficina ya existe!");
-            return buscarOficinaPorCodigo(oficina.getCodigoOficina()).get(0);
+            return buscarOficinaPorCodigo(oficina.getCodigoOficina()).getFirst();
         }
         oficinaDAO.agregarOficina(oficina);
         return oficina;
@@ -36,12 +36,15 @@ public class OficinaServicio {
 
     public void modificarOficina(Oficina oficina) throws Exception {
         verificarOficina(oficina);
+        if (!verificarOficinaRepetida(oficina.getCodigoOficina())) {
+            throw new Exception("La oficina no existe no se puede modificar");
+        }
         oficinaDAO.modificarOficina(oficina);
     }
 
     private boolean verificarOficinaRepetida(String codigoOficina) throws Exception {
         List<Oficina> oficinas = buscarOficinaPorCodigo(codigoOficina);
-        return !oficinas.isEmpty(); // Si existe oficinas con ese codigo especificado
+        return !oficinas.isEmpty(); // Si es true existe oficinas con ese codigo especificado
     }
 
     private void verificarCodigoOficina(String codigoOficina) throws Exception {

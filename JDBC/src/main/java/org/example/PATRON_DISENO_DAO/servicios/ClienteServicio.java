@@ -18,7 +18,7 @@ public class ClienteServicio {
 
         if (verificarClienteRepetido(codigoC)) {
             System.out.println("El cliente ya existe");
-            return buscarClientesPorCodigo(codigoC).get(0);
+            return buscarClientesPorCodigo(codigoC).getFirst();
         }
 
         Cliente cliente = new Cliente(codigoC, nombre, nombreContacto, apellidoContacto,telefono, fax,ciudad, region, pais, codigoPostal, idEmpleado, limiteCredito);

@@ -9,9 +9,14 @@ public class ProductoServicio {
     public ProductoServicio() {
         productoDAO = new ProductoDAO();
     }
-    public void agregarProducto(Producto producto) throws Exception {
+    public Producto agregarProducto(Producto producto) throws Exception {
         verificarDatosProducto(producto);
+        if (verificarProductoRepetido(producto.getCodigoProducto())) {
+            System.out.println("El producto ya existe.");
+            return buscarProductoPorCodigo(producto.getCodigoProducto()).getFirst();
+        }
         productoDAO.guardarProducto(producto);
+        return producto;
     }
 
     public List<Producto> listarProductos() throws Exception {
@@ -96,9 +101,16 @@ public class ProductoServicio {
             throw new Exception("Los atributos del producto no pueden ser vacio");
         }
     }
+    private boolean verificarProductoRepetido(String codigoProducto) throws Exception {
+        if (codigoProducto == null || codigoProducto.isEmpty()) {
+            throw new Exception("Codigo producto no puede ser vacio o nulo");
+        }
 
+        List<Producto> productoAVerificar = buscarProductoPorCodigo(codigoProducto);
+        return !productoAVerificar.isEmpty();
+    }
     private void verificarDatosProducto(Producto producto) throws Exception {
-        if (producto.getIdProducto() < 1 ) {
+        if (producto.getIdProducto() < 0 ) {
             throw new Exception("No se puede agregar el producto");
         }
         if (producto.getNombreProducto() == null || producto.getNombreProducto().equals("")) {
