@@ -7,6 +7,18 @@ import java.util.List;
 
 public class PedidosDAO extends DAO {
 
+    public void guardarPedido(Pedido pedido) throws Exception {
+        if (pedido == null) {
+            throw new Exception("Pedido no puede ser nulo");
+        }
+        try {
+            String sql = "INSERT INTO pedido (id_pedido, codigo_pedido, fecha_pedido, fecha_esperada, fecha_entrega, estado, comentarios, id_cliente) " +
+                    "VALUES (" + pedido.getIdPedido() + ", "+ pedido.getCodigoPedido() + ", '" + pedido.getFechaPedido() + "', '"+ pedido.getFechaEsperada() + "', '"+ pedido.getFechaEntrega() +"', '"+ pedido.getEstado() +"', '"+ pedido.getComentarios()+"', " + pedido.getIdCliente() +")";
+            insertarModificarEliminar(sql);
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
     public List<Pedido> listarPedidosPorCliente(int clienteID) throws Exception{
         List<Pedido> pedidos = new ArrayList<Pedido>();
         try {

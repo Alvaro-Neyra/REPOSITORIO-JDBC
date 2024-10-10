@@ -127,6 +127,7 @@ public class Cliente {
     public void setLimiteCredito(double limiteCredito) {
             this.limiteCredito = limiteCredito;
     }
+
     @Override
     public String toString() {
         return "Cliente{" +
