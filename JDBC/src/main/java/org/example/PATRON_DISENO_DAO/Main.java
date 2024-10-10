@@ -113,7 +113,20 @@ public class Main {
             for (Producto producto : productosPorProveedor) {
                 System.out.println(producto.toString());
             }
-            pdao.modificarProducto(48, "Ciruelo SR", 20, 15);
+            // Modificando producto
+            Producto productoModificado = new Producto();
+            productoModificado.setIdProducto(48);
+            productoModificado.setCodigoProducto("CR-123");
+            productoModificado.setNombreProducto("Ciruelo SR");
+            productoModificado.setIdGamaProducto(5);
+            productoModificado.setDimensiones("30x30x30");
+            productoModificado.setProveedor("Proveedor XYZ");
+            productoModificado.setDescripcion("Fruta fresca");
+            productoModificado.setStock(15);
+            productoModificado.setPrecioVenta(20);
+            productoModificado.setPrecioProveedor(10);
+
+            pdao.modificarProducto(productoModificado);
             List<Producto> productosConLaMenorCantidadDeStockDisponible = pdao.listarProductoConLaMenorCantidadDeStockDisponible();
             System.out.println("Los productos con la menor cantidad de stock disponible son: ");
             for (Producto producto : productosConLaMenorCantidadDeStockDisponible) {
@@ -142,7 +155,15 @@ public class Main {
             for (Oficina oficina : oficinasBuscadas) {
                 System.out.println(oficina.toString());
             }
-            ofDao.modificarOficina(5, "PAR-FR", "PARIS", "FRANCIA", "EMEA", "20394", "+33 203 012 123");
+            Oficina nuevaOficina = new Oficina();
+            nuevaOficina.setIdOficina(5);
+            nuevaOficina.setCodigoOficina("PAR-FR");
+            nuevaOficina.setCiudad("PARIS");
+            nuevaOficina.setPais("FRANCIA");
+            nuevaOficina.setRegion("EMEA");
+            nuevaOficina.setCodigoPostal("20394");
+            nuevaOficina.setTelefono("+33 203 012 123");
+            ofDao.modificarOficina(nuevaOficina);
         } catch (Exception e) {
             e.printStackTrace();
         }

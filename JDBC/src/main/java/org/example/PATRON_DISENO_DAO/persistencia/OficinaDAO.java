@@ -6,6 +6,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OficinaDAO extends DAO{
+
+    public void agregarOficina(Oficina oficina) throws Exception {
+        if (oficina == null) {
+            throw new Exception("Oficina no puede ser nulo");
+        }
+
+        try {
+            String sql = "INSERT INTO oficina (codigo_oficina, ciudad, pais, region, codigo_postal, telefono) " +
+                    "VALUES ('" + oficina.getCodigoOficina() + "', '" + oficina.getCiudad() + "', '" + oficina.getPais() + "', '" +
+                    oficina.getRegion() + "', '" + oficina.getCodigoPostal() + "', '" + oficina.getTelefono() + "')";
+
+            insertarModificarEliminar(sql);
+        } catch (Exception e) {
+            throw new Exception("Error al insertar la oficina: " + e.getMessage());
+        }
+    }
+
+
     public List<Oficina> buscarOficinaPorCodigo(String codigoOficina) throws Exception {
         List<Oficina> oficinas = new ArrayList<Oficina>();
         try {
@@ -30,9 +48,9 @@ public class OficinaDAO extends DAO{
         return oficinas;
     }
 
-    public void modificarOficina(int idOficina, String codigoOficina, String ciudad, String pais, String region, String codigoPostal, String telefono) throws Exception {
+    public void modificarOficina(Oficina oficina) throws Exception {
         try {
-            String sql = "UPDATE oficina SET codigo_oficina = '" + codigoOficina + " ', ciudad = ' " + ciudad + " ', pais = '" + pais + " ', region = '" + region + " ', codigo_postal = '" + codigoPostal + " ', telefono = '" + telefono + "' WHERE id_oficina = " + idOficina;
+            String sql = "UPDATE oficina SET codigo_oficina = '" + oficina.getCodigoOficina() + " ', ciudad = ' " + oficina.getCiudad() + " ', pais = '" + oficina.getPais() + " ', region = '" + oficina.getRegion() + " ', codigo_postal = '" + oficina.getCodigoPostal() + " ', telefono = '" + oficina.getTelefono() + "' WHERE id_oficina = " + oficina.getIdOficina();
             insertarModificarEliminar(sql);
             System.out.println("Oficina modificada con exito!");
         } catch (Exception e) {

@@ -113,18 +113,28 @@ public class ProductoDAO extends DAO{
         return productosPorProveedor;
     }
 
-    public void modificarProducto(int idProducto, String nuevoNombre, double nuevoPrecio, int nuevaCantidad) throws Exception {
+    public void modificarProducto(Producto producto) throws Exception {
         try {
-            String sql = "UPDATE producto SET nombre = '" + nuevoNombre + "', precio_venta = " + nuevoPrecio +
-                    ", cantidad_en_stock = " + nuevaCantidad + " WHERE id_producto = " + idProducto;
+            String sql = "UPDATE producto SET " +
+                    "codigo_producto = '" + producto.getCodigoProducto() + "', " +
+                    "nombre = '" + producto.getNombreProducto() + "', " +
+                    "id_gama_producto = " + producto.getIdGamaProducto() + ", " +
+                    "dimensiones = '" + producto.getDimensiones() + "', " +
+                    "proveedor = '" + producto.getProveedor() + "', " +
+                    "descripcion = '" + producto.getDescripcion() + "', " +
+                    "cantidad_en_stock = " + producto.getStock() + ", " +
+                    "precio_venta = " + producto.getPrecioVenta() + ", " +
+                    "precio_proveedor = " + producto.getPrecioProveedor() +
+                    " WHERE id_producto = " + producto.getIdProducto();
             insertarModificarEliminar(sql);
-            System.out.println("El producto " + nuevoNombre + " modificado correctamente");
+            System.out.println("El producto " + producto.getNombreProducto() + " ha sido modificado correctamente.");
         } catch (Exception e) {
-            throw new Exception("Producto no modificado: " + e.getMessage());
+            throw new Exception("Error al modificar el producto: " + e.getMessage());
         } finally {
             desconectarBaseDeDatos();
         }
     }
+
 
     public List<Producto> listarProductoConLaMenorCantidadDeStockDisponible() throws Exception {
         List<Producto> productosPorCantidadDisponible = new ArrayList<>();

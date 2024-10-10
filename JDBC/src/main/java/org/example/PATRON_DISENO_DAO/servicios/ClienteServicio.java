@@ -14,6 +14,13 @@ public class ClienteServicio {
                                      String telefono, String fax, String ciudad, String region, String pais, String codigoPostal,
                                      int idEmpleado, double limiteCredito) throws Exception {
         verificarNombreYApellido(nombreContacto, apellidoContacto);
+        verificarCliente(codigoC, nombre, nombreContacto, apellidoContacto, telefono, idEmpleado, limiteCredito);
+
+        if (verificarClienteRepetido(codigoC)) {
+            System.out.println("El cliente ya existe");
+            return buscarClientesPorCodigo(codigoC).get(0);
+        }
+
         Cliente cliente = new Cliente(codigoC, nombre, nombreContacto, apellidoContacto,telefono, fax,ciudad, region, pais, codigoPostal, idEmpleado, limiteCredito);
         clienteDAO.guardarCliente(cliente);
         return cliente;
@@ -78,6 +85,27 @@ public class ClienteServicio {
     private void verificarCodigo(int codigoCliente) throws Exception {
         if (codigoCliente <= 0) {
             throw new Exception("El codigo de cliente no puede ser negativo o cero");
+        }
+    }
+    private boolean verificarClienteRepetido(int codigoCliente) throws Exception{
+        List<Cliente> clientes = buscarClientesPorCodigo(codigoCliente);
+        return !clientes.isEmpty();
+    }
+    private void verificarCliente(int codigoC, String nombre, String nombreContacto, String apellidoContacto, String telefono, int idEmpleado, double limiteCredito) throws Exception {
+        if (codigoC <= 0) {
+            throw new Exception("El código del cliente debe ser positivo");
+        }
+        if (idEmpleado <= 0) {
+            throw new Exception("El ID del empleado debe ser positivo");
+        }
+        if (limiteCredito < 0) {
+            throw new Exception("El límite de crédito no puede ser negativo");
+        }
+        if (nombre == null || nombre.trim().isEmpty() || nombreContacto == null || nombreContacto.trim().isEmpty() || apellidoContacto == null || apellidoContacto.trim().isEmpty()) {
+            throw new Exception("El nombre, nombre de contacto y apellido de contacto no pueden estar vacíos");
+        }
+        if (telefono == null || telefono.trim().isEmpty()) {
+            throw new Exception("El teléfono no puede estar vacío");
         }
     }
 }
