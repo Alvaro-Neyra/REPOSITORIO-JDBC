@@ -55,7 +55,7 @@ public class CasaService {
         return !casasEncontradas.isEmpty();
     }
     private void verificarCodigo(int codigo) throws Exception {
-        if (codigo <= 0) {
+        if (codigo < 0) {
             throw new Exception("Codigo invalido");
         }
     }

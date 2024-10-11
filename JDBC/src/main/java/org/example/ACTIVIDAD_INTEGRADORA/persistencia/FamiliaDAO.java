@@ -24,7 +24,7 @@ public class FamiliaDAO extends DAO {
         List<Familia> familiasEncontradas = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM familia WHERE id_familia = " + idFamilia;
+            String sql = "SELECT * FROM familias WHERE id_familia = " + idFamilia;
             consultarBase(sql);
             while (resultSet.next()) {
                 Familia nuevaFamilia = new Familia();
