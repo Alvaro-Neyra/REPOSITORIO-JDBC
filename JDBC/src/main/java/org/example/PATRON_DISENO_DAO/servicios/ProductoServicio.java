@@ -67,7 +67,11 @@ public class ProductoServicio {
 
     public void modificarProducto(Producto producto) throws Exception {
         verificarDatosProducto(producto);
-        productoDAO.modificarProducto(producto);
+        if (!verificarProductoRepetido(producto.getCodigoProducto())) {
+            throw new Exception("El producto no existe por lo tanto no se va a poder modificar");
+        } else {
+            productoDAO.modificarProducto(producto);
+        }
     }
 
     public List<Producto> listarProductoConElMenorStock() throws Exception {
@@ -101,7 +105,7 @@ public class ProductoServicio {
             throw new Exception("Los atributos del producto no pueden ser vacio");
         }
     }
-    private boolean verificarProductoRepetido(String codigoProducto) throws Exception {
+    public boolean verificarProductoRepetido(String codigoProducto) throws Exception {
         if (codigoProducto == null || codigoProducto.isEmpty()) {
             throw new Exception("Codigo producto no puede ser vacio o nulo");
         }

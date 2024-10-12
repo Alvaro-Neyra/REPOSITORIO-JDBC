@@ -131,4 +131,40 @@ public class Producto {
                 ", descripcion='" + descripcion + '\'' +
                 '}';
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Producto producto = (Producto) obj;
+
+        return idProducto == producto.idProducto &&
+                idGamaProducto == producto.idGamaProducto &&
+                stock == producto.stock &&
+                Double.compare(producto.precioVenta, precioVenta) == 0 &&
+                Double.compare(producto.precioProveedor, precioProveedor) == 0 &&
+                codigoProducto.equals(producto.codigoProducto) &&
+                nombreProducto.equals(producto.nombreProducto) &&
+                dimensiones.equals(producto.dimensiones) &&
+                proveedor.equals(producto.proveedor) &&
+                descripcion.equals(producto.descripcion);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Integer.hashCode(idProducto);
+        result = 31 * result + codigoProducto.hashCode();
+        result = 31 * result + nombreProducto.hashCode();
+        result = 31 * result + Integer.hashCode(idGamaProducto);
+        result = 31 * result + dimensiones.hashCode();
+        result = 31 * result + proveedor.hashCode();
+        result = 31 * result + descripcion.hashCode();
+        result = 31 * result + Integer.hashCode(stock);
+        long precioVentaBits = Double.doubleToLongBits(precioVenta);
+        result = 31 * result + Long.hashCode(precioVentaBits);
+        long precioProveedorBits = Double.doubleToLongBits(precioProveedor);
+        result = 31 * result + Long.hashCode(precioProveedorBits);
+        return result;
+    }
+
 }

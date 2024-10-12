@@ -31,7 +31,7 @@ public class ClienteServicio {
         try {
             clientesRecibidos = clienteDAO.listarTodosLosClientes();
             if (clientesRecibidos.isEmpty()) {
-                System.out.println("No hay clientes encontrados.");
+                System.out.println("No hay clientes existentes.");
             }
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -44,9 +44,6 @@ public class ClienteServicio {
         List<Cliente> clientesRecibidos = new ArrayList<>();
         try {
             clientesRecibidos = clienteDAO.buscarClientePorCodigo(codigoCliente);
-            if (clientesRecibidos.isEmpty()) {
-                System.out.println("No hay clientes encontrados.");
-            }
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

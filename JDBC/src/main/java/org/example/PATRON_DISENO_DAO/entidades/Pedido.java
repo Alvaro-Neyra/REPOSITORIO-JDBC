@@ -111,4 +111,34 @@ public class Pedido {
                 ", idCliente=" + idCliente +
                 '}';
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Pedido pedido = (Pedido) o;
+
+        if (idPedido != pedido.idPedido) return false;
+        if (codigoPedido != pedido.codigoPedido) return false;
+        if (idCliente != pedido.idCliente) return false;
+        if (!fechaPedido.equals(pedido.fechaPedido)) return false;
+        if (!fechaEsperada.equals(pedido.fechaEsperada)) return false;
+        if (!fechaEntrega.equals(pedido.fechaEntrega)) return false;
+        if (!estado.equals(pedido.estado)) return false;
+        return comentarios.equals(pedido.comentarios);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idPedido;
+        result = 31 * result + codigoPedido;
+        result = 31 * result + idCliente;
+        result = 31 * result + (fechaPedido != null ? fechaPedido.hashCode() : 0);
+        result = 31 * result + (fechaEsperada != null ? fechaEsperada.hashCode() : 0);
+        result = 31 * result + (fechaEntrega != null ? fechaEntrega.hashCode() : 0);
+        result = 31 * result + (estado != null ? estado.hashCode() : 0);
+        result = 31 * result + (comentarios != null ? comentarios.hashCode() : 0);
+        return result;
+    }
+
 }

@@ -95,4 +95,32 @@ public class Oficina {
                 ", telefono='" + telefono + '\'' +
                 '}';
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Oficina oficina = (Oficina) o;
+
+        if (idOficina != oficina.idOficina) return false;
+        if (!codigoOficina.equals(oficina.codigoOficina)) return false;
+        if (!ciudad.equals(oficina.ciudad)) return false;
+        if (!pais.equals(oficina.pais)) return false;
+        if (!region.equals(oficina.region)) return false;
+        if (!codigoPostal.equals(oficina.codigoPostal)) return false;
+        return telefono.equals(oficina.telefono);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idOficina;
+        result = 31 * result + (codigoOficina != null ? codigoOficina.hashCode() : 0);
+        result = 31 * result + (ciudad != null ? ciudad.hashCode() : 0);
+        result = 31 * result + (pais != null ? pais.hashCode() : 0);
+        result = 31 * result + (region != null ? region.hashCode() : 0);
+        result = 31 * result + (codigoPostal != null ? codigoPostal.hashCode() : 0);
+        result = 31 * result + (telefono != null ? telefono.hashCode() : 0);
+        return result;
+    }
+
 }

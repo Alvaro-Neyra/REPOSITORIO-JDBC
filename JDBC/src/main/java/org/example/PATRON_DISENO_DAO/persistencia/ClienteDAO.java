@@ -26,14 +26,24 @@ public class ClienteDAO extends DAO {
         List<Cliente> clientes = new ArrayList<Cliente>();
         try {
             Cliente cliente = null;
-            String sql = "SELECT nombre_contacto, apellido_contacto, id_cliente FROM cliente";
+            String sql = "SELECT * FROM cliente";
             consultarBase(sql);
 
             while (resultSet.next()) {
                 cliente = new Cliente();
+                cliente.setIdCliente(resultSet.getInt("id_cliente"));
+                cliente.setCodigoCliente(resultSet.getInt("codigo_cliente"));
+                cliente.setNombreCliente(resultSet.getString("nombre_cliente"));
                 cliente.setNombreContacto(resultSet.getString("nombre_contacto"));
                 cliente.setApellidoContacto(resultSet.getString("apellido_contacto"));
-                cliente.setIdCliente(resultSet.getInt("id_cliente"));
+                cliente.setTelefono(resultSet.getString("telefono"));
+                cliente.setFax(resultSet.getString("fax"));
+                cliente.setCiudad(resultSet.getString("ciudad"));
+                cliente.setRegion(resultSet.getString("region"));
+                cliente.setPais(resultSet.getString("pais"));
+                cliente.setCodigoPostal(resultSet.getString("codigo_postal"));
+                cliente.setIdEmpleado(resultSet.getInt("id_empleado"));
+                cliente.setLimiteCredito(resultSet.getInt("limite_credito"));
                 clientes.add(cliente);
             }
             desconectarBaseDeDatos();

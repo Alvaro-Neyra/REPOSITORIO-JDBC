@@ -146,4 +146,46 @@ public class Cliente {
                 ", limiteCredito=" + limiteCredito +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Cliente cliente = (Cliente) o;
+
+        if (idCliente != cliente.idCliente) return false;
+        if (codigoCliente != cliente.codigoCliente) return false;
+        if (idEmpleado != cliente.idEmpleado) return false;
+        if (Double.compare(cliente.limiteCredito, limiteCredito) != 0) return false;
+        if (!nombreCliente.equals(cliente.nombreCliente)) return false;
+        if (!nombreContacto.equals(cliente.nombreContacto)) return false;
+        if (!apellidoContacto.equals(cliente.apellidoContacto)) return false;
+        if (!telefono.equals(cliente.telefono)) return false;
+        if (!fax.equals(cliente.fax)) return false;
+        if (!ciudad.equals(cliente.ciudad)) return false;
+        if (!region.equals(cliente.region)) return false;
+        if (!pais.equals(cliente.pais)) return false;
+        return codigoPostal.equals(cliente.codigoPostal);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idCliente;
+        result = 31 * result + codigoCliente;
+        result = 31 * result + (nombreCliente != null ? nombreCliente.hashCode() : 0);
+        result = 31 * result + (nombreContacto != null ? nombreContacto.hashCode() : 0);
+        result = 31 * result + (apellidoContacto != null ? apellidoContacto.hashCode() : 0);
+        result = 31 * result + (telefono != null ? telefono.hashCode() : 0);
+        result = 31 * result + (fax != null ? fax.hashCode() : 0);
+        result = 31 * result + (ciudad != null ? ciudad.hashCode() : 0);
+        result = 31 * result + (region != null ? region.hashCode() : 0);
+        result = 31 * result + (pais != null ? pais.hashCode() : 0);
+        result = 31 * result + (codigoPostal != null ? codigoPostal.hashCode() : 0);
+        result = 31 * result + idEmpleado;
+        long temp = Double.doubleToLongBits(limiteCredito);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
 }

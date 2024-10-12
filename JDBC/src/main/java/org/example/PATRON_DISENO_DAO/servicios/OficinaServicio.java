@@ -42,7 +42,7 @@ public class OficinaServicio {
         oficinaDAO.modificarOficina(oficina);
     }
 
-    private boolean verificarOficinaRepetida(String codigoOficina) throws Exception {
+    public boolean verificarOficinaRepetida(String codigoOficina) throws Exception {
         List<Oficina> oficinas = buscarOficinaPorCodigo(codigoOficina);
         return !oficinas.isEmpty(); // Si es true existe oficinas con ese codigo especificado
     }
