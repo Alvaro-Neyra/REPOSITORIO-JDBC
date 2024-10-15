@@ -68,4 +68,53 @@ public class FamiliaDAO extends DAO {
         }
         return familiasListadas;
     }
+
+    public List<Familia> listarFamiliasConAlMenos3HijosYEdadMaximaMenorA10() throws Exception{
+        List<Familia> familiasListadas = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM familias WHERE num_hijos >= 3 AND edad_maxima < 10";
+            consultarBase(sql);
+            while (resultSet.next()) {
+                Familia nuevaFamilia = new Familia();
+                nuevaFamilia.setIdFamilia(resultSet.getInt("id_familia"));
+                nuevaFamilia.setNombre(resultSet.getString("nombre"));
+                nuevaFamilia.setEdadMinima(resultSet.getInt("edad_minima"));
+                nuevaFamilia.setEdadMaxima(resultSet.getInt("edad_maxima"));
+                nuevaFamilia.setNumHijos(resultSet.getInt("num_hijos"));
+                nuevaFamilia.setEmail(resultSet.getString("email"));
+                nuevaFamilia.setIdCasaFamilia(resultSet.getInt("id_casa_familia"));
+                familiasListadas.add(nuevaFamilia);
+            }
+        } catch (Exception e) {
+            throw new Exception("Error al listar familias con al menos 3 hijas y con edad maxima inferior a 10 anios: " + e.getMessage());
+        } finally {
+            desconectarBaseDeDatos();
+        }
+        return familiasListadas;
+    }
+
+    public List<Familia> listarFamiliasConHotmail() throws Exception {
+        List<Familia> familiasListadas = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM WHERE email LIKE '%Hotmail%'";
+            consultarBase(sql);
+            while (resultSet.next()) {
+                Familia nuevaFamilia = new Familia();
+                nuevaFamilia.setIdFamilia(resultSet.getInt("id_familia"));
+                nuevaFamilia.setNombre(resultSet.getString("nombre"));
+                nuevaFamilia.setEdadMinima(resultSet.getInt("edad_minima"));
+                nuevaFamilia.setEdadMaxima(resultSet.getInt("edad_maxima"));
+                nuevaFamilia.setNumHijos(resultSet.getInt("num_hijos"));
+                nuevaFamilia.setEmail(resultSet.getString("email"));
+                nuevaFamilia.setIdCasaFamilia(resultSet.getInt("id_casa_familia"));
+                familiasListadas.add(nuevaFamilia);
+            }
+        } catch (Exception e) {
+            throw new Exception("Error al listar familias con hotmail: " + e.getMessage());
+        }
+        finally {
+            desconectarBaseDeDatos();
+        }
+        return familiasListadas;
+    }
 }

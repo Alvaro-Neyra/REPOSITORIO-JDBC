@@ -59,4 +59,16 @@ public class ComentarioDAO extends DAO{
         }
         return comentarios;
     }
+
+    // public buscar Defender
+    public void listarCasasReinoUnidoEstanLimpias(int idComentario) throws Exception {
+        try {
+            String sql = "SELECT ca.*" + "FROM casas ca" + "JOIN comentarios co ON ca.id_casa = co.id_casa" + "WHERE ca.pais = 'Reino Unido' AND co.comentario LIKE '%limpia%'";
+            consultarBase(sql);
+        } catch (Exception e) {
+            throw new Exception("Comentario no puede ser nulo ni negativo");
+        } finally {
+            desconectarBaseDeDatos();
+        }
+    }
 }

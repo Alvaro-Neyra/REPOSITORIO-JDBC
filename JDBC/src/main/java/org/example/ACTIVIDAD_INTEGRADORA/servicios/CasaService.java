@@ -50,6 +50,43 @@ public class CasaService {
         return casas;
     }
 
+    public List<Casa> listarCasasPorAgosto() throws Exception {
+        List<Casa> casas = new ArrayList<>();
+        try {
+            casas = casaDAO.listarCasasPorAgostoEnReinoUnido();
+            if (casas.isEmpty()) {
+                System.out.println("No hay casas existentes");
+            }
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+        return casas;
+    }
+
+    public List<Casa> listarCasaPorPeriodo(String fecha_desde, int tiempo_minimo) throws Exception {
+        List<Casa> casas = new ArrayList<>();
+        try {
+            casas = casaDAO.listarCasasPorPeriodo(fecha_desde, tiempo_minimo);
+            if (casas.isEmpty()) {
+                System.out.println("No hay casas existentes");
+            }
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+        return casas;
+    }
+
+    public List<Casa> incrementarPrecioPorDia(double porcentaje) throws Exception {
+        List<Casa> casasActualizadas = new ArrayList<>();
+        try {
+            casaDAO.incrementarPrecioPorDia(porcentaje);
+            casasActualizadas = casaDAO.listarCasas();
+        } catch (Exception e) {
+            throw new Exception("Error al incrementar el precio por dia: " + e.getMessage());
+        }
+        return casasActualizadas;
+    }
+
     private boolean casaRepetida(int idCasa) throws Exception {
         List<Casa> casasEncontradas = buscarCasa(idCasa);
         return !casasEncontradas.isEmpty();
